@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Organizer';
+  activeSection = 'contacts';
+
+  onNavigate(section: string) {
+    this.activeSection = section;
+  }
 }
