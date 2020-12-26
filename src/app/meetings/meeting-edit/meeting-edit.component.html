@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12">
+    <form>
+      <div class="row">
+        <div class="col-5 form-group">
+          <label for="date">When?</label>
+          <input type="datetime-local"
+                 name="when"
+                 id="date"
+                 class="form-control"
+                 #dateInput>
+          <label for="contactName">With</label>
+          <input type="text"
+                 name="with"
+                 id="Name"
+                 class="form-control"
+                 #contactNameInput>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 btn-group"
+             role="group">
+          <button class="btn btn-success"
+                  (click)="onNewMeetingSubmitted()"
+                  type="button">Create</button>
+          <button class="btn btn-danger"
+                  (click)="onClearMeetingView()"
+                  type="button">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
