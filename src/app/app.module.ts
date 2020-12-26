@@ -10,6 +10,7 @@ import { ContactItemComponent } from './contacts/contacts-list/contact-item/cont
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { MeetingEditComponent } from './meetings/meeting-edit/meeting-edit.component';
+import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MeetingEditComponent } from './meetings/meeting-edit/meeting-edit.compo
     ContactItemComponent,
     ContactDetailComponent,
     MeetingsComponent,
-    MeetingEditComponent
+    MeetingEditComponent,
+    ContactStartComponent
   ],
   imports: [
     BrowserModule,
