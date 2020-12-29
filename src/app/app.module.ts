@@ -11,6 +11,8 @@ import { ContactDetailComponent } from './contacts/contact-detail/contact-detail
 import { MeetingsComponent } from './meetings/meetings.component';
 import { MeetingEditComponent } from './meetings/meeting-edit/meeting-edit.component';
 import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { ContactStartComponent } from './contacts/contact-start/contact-start.co
     ContactDetailComponent,
     MeetingsComponent,
     MeetingEditComponent,
-    ContactStartComponent
+    ContactStartComponent,
+    ContactEditComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,4 +26,8 @@ export class ContactService {
   getContacts(){
     return this.contacts.slice();
   }
+
+  getContactById(id: number) {
+    return this.contacts[id];
+  }
 }

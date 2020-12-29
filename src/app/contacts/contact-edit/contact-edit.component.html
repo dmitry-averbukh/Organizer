@@ -1,0 +1,50 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="row">
+      <div class="col-12">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="contactName">Name</label>
+          <input type="text"
+                 id="contactName"
+                 ngModel
+                 name="contactName"
+                 class="form-control">
+        </div>
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text"
+                 id="description"
+                 ngModel
+                 name="description"
+                 class="form-control">
+        </div>
+        <!-- Image Path -->
+        <div class="form-group">
+          <label for="imagePath">Image Path</label>
+          <input type="text"
+                 id="imagePath"
+                 ngModel
+                 name="imagePath"
+                 class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <button class="btn btn-primary"
+                type="submit">Done</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-secondary"
+                type="button">Clear</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-danger"
+                type="button">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
