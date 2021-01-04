@@ -13,6 +13,8 @@ import { MeetingEditComponent } from './meetings/meeting-edit/meeting-edit.compo
 import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {StorageService} from './common/storage.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

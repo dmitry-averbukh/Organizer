@@ -1,33 +1,51 @@
-import { EventEmitter } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Contact} from './contacts-list/contact.model';
+import {StorageService} from '../common/storage.service';
+import {Subject} from 'rxjs';
 
+@Injectable()
 export class ContactService {
   private contacts: Contact[];
 
   contactSelected = new EventEmitter<Contact>();
+  contactsChanged = new EventEmitter<Contact[]>();
+  errorChanel = new Subject<string>();
 
-  constructor(){
-    this.contacts = [
-      new Contact('David',
-        'CEO @ NoOneWare',
-        'https://randomuser.me/api/portraits/men/75.jpg'),
-      new Contact('George',
-        'CTO @ NoOneWare',
-        'https://randomuser.me/api/portraits/men/76.jpg'),
-      new Contact('Andre',
-        'CEO @ NoOneWare',
-        'https://randomuser.me/api/portraits/men/77.jpg'),
-      new Contact('John',
-        'CTO @ NoOneWare',
-        'https://randomuser.me/api/portraits/men/78.jpg')
-    ];
+  constructor(private storageService: StorageService) {
   }
 
-  getContacts(){
+  fetctchAllContacts() {
+    this.storageService.getAllContacts().subscribe(contacts => {
+      this.contacts = contacts;
+      this.onContactChanged();
+    }, error => {
+      this.errorChanel.next('There was a error to fetch contacts from the cloud!');
+    });
+  }
+
+  getContacts() {
     return this.contacts.slice();
   }
 
   getContactById(id: number) {
-    return this.contacts[id];
+    return new Contact(this.contacts[id].name, this.contacts[id].description, this.contacts[id].imagePath);
+  }
+
+  onContactChanged() {
+    this.contactsChanged.emit(this.getContacts());
+  }
+
+  replaceContact(id: number, contact: Contact) {
+    this.contacts[id] = contact;
+    this.onContactChanged();
+  }
+
+  appendContact(contact: Contact) {
+    this.storageService.postContact(contact).subscribe(contact => {
+        this.contacts.unshift(contact);
+        this.onContactChanged();
+      }, error => {
+        this.errorChanel.next('Something went wrong while trying to add new contact!');
+      });
   }
 }

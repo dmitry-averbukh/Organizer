@@ -1,3 +1,13 @@
+<div class="div" *ngIf="errorMassage">
+  <div class="alert, alert-danger">
+    <h6 class="text-center">Some thing went wrong!</h6>
+    <p class="text-center">{{errorMassage}}</p>
+    <div class="text-center">
+    <button class="btn, btn-danger" (click)="onClickDismissError()">Dismiss</button>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-4">
     <app-contacts-list></app-contacts-list>

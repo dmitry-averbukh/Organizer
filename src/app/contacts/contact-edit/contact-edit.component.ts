@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {Contact} from '../contacts-list/contact.model';
+import {ContactService} from '../contact.service';
 
 @Component({
   selector: 'app-contact-edit',
@@ -13,22 +15,32 @@ export class ContactEditComponent implements OnInit {
 
   id: number;
   editMode: boolean;
+  contact: Contact = {
+    name: '',
+    description: '',
+    imagePath: ''
+  };
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private contactService: ContactService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
-
-      console.log('Edit mode value is:');
-      console.log(this.editMode);
-
     });
+    if (this.editMode) {
+      this.contact = this.contactService.getContactById(this.id);
+    }
   }
 
   onSubmit() {
-    console.log(this.contactForm);
+    if (this.editMode) {
+      this.contactService.replaceContact(this.id, this.contact);
+    } else {
+      this.contactService.appendContact(this.contact);
+    }
+    this.router.navigate(['/contacts']);
   }
 }
 

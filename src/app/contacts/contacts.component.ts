@@ -11,11 +11,20 @@ import {Contact} from './contacts-list/contact.model';
 export class ContactsComponent implements OnInit {
 
   selectedContact: Contact;
+  errorMassage: string;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
-    this.contactService.contactSelected.subscribe((contact: Contact) => {this.selectedContact = contact} );
+    this.contactService.fetctchAllContacts();
+    this.contactService.contactSelected.subscribe((contact: Contact) => {this.selectedContact = contact;
+    });
+    this.contactService.errorChanel.subscribe(errorMassage => {
+      this.errorMassage = errorMassage;
+    });
   }
 
+  onClickDismissError() {
+    this.errorMassage = '';
+  }
 }
